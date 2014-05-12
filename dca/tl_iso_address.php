@@ -11,6 +11,7 @@
  * @package    isotope_germanize
  * @license    LGPL 
  * @filesource
+ * @coauthor 2014 Monique Hahnefeld update to contao 3, isotope 2
  */
 
 
@@ -27,7 +28,7 @@ $GLOBALS['TL_DCA']['tl_iso_address']['palettes']['default'] = str_replace('vat_n
 
 $GLOBALS['TL_DCA']['tl_iso_address']['fields']['vat_no_ok'] = array
 (
-	'label'					=> &$GLOBALS['TL_LANG']['tl_iso_addresses']['vat_no_ok'],
+	'label'					=> &$GLOBALS['TL_LANG']['tl_iso_address']['vat_no_ok'],
 	'exclude'				=> true,
 	'filter'				=> true,
 	'inputType'				=> (TL_MODE=='BE' ? 'select':'hidden'),
