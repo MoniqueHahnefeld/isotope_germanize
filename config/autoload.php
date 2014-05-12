@@ -12,8 +12,7 @@
 
 ClassLoader::addNamespaces(array
 (
-	'Contao',
-	'MHAHNEFELD\FTC',
+	'Contao'
 ));
  */
 
