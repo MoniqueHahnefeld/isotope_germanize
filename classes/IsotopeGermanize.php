@@ -14,7 +14,14 @@
  * @filesource
  */
 
+/*
+check out
+https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionItem.php
+https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionSurcharge.php
+https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Interfaces/IsotopeProductCollectionSurcharge.php
 
+
+*/
 /**
  * German shop functionality
  *
