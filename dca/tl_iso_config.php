@@ -11,6 +11,7 @@
  * @package    isotope_germanize
  * @license    LGPL
  * @filesource
+ * @coauthor 2014 Monique Hahnefeld update to contao 3, isotope 2
  */
 
 
