@@ -16,6 +16,7 @@
 
 /*
 check out
+https://github.com/isotope/core/blob/support/1.4/system/modules/isotope/IsotopeFrontend.php
 https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionItem.php
 https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionSurcharge.php
 https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Interfaces/IsotopeProductCollectionSurcharge.php
