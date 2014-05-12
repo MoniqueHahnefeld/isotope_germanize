@@ -11,6 +11,7 @@
  * @package    isotope_germanize
  * @license    LGPL 
  * @filesource
+ * @coauthor 2014 Monique Hahnefeld update to contao 3, isotope 2
  */
 
 
@@ -32,6 +33,7 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['vat_no'] = array
 	'search'				=> true,
 	'inputType'				=> 'text',
 	'eval'					=> array('maxlength'=>255, 'feEditable'=>true, 'feGroup'=>'address', 'tl_class'=>'w50'),
+	'sql'		=> "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_member']['fields']['vat_no_ok'] = array
@@ -43,5 +45,6 @@ $GLOBALS['TL_DCA']['tl_member']['fields']['vat_no_ok'] = array
 	'options'				=> array('nok', 'nok_invalid', 'nok_simple', 'nok_qualified', 'ok_qualified', 'ok_manual'),
 	'reference'				=> &$GLOBALS['TL_LANG']['tl_member'],
 	'default'				=> 'nok',
-	'eval'					=> array('feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50')
+	'eval'					=> array('feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50'),
+		'sql'		=> "varchar(16) NOT NULL default 'nok'"
 );
