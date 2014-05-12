@@ -32,7 +32,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['germanize'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['germanize'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'clr')
+	'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'clr'),
+	'sql'	=> "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_note'] = array
@@ -41,7 +42,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_note'] = array
 	'exclude'                 => true,
 	'inputType'               => 'select',
 	'options_callback'        => array('tl_iso_config_germanize', 'getArticleAlias'),
-	'eval'                    => array('includeBlankOption'=>true,'mandatory'=>false, 'tl_class'=>'clr')
+	'eval'                    => array('includeBlankOption'=>true,'mandatory'=>false, 'tl_class'=>'clr'),
+		'sql'	=> "int(10) unsigned NOT NULL default '0'"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_page'] = array
@@ -49,7 +51,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_page'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['shipping_page'],
 	'exclude'                 => true,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('fieldType'=>'radio')
+	'eval'                    => array('fieldType'=>'radio'),
+		'sql'	=> "int(10) unsigned NOT NULL default '0'"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_target'] = array
@@ -57,7 +60,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_target'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['shipping_target'],
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
-	'eval'                    => array('tl_class'=>'w50 m12')
+	'eval'                    => array('tl_class'=>'w50 m12'),
+		'sql'	=> "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_rel'] = array
@@ -66,7 +70,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['shipping_rel'] = array
 	'exclude'                 => true,
 	'search'                  => true,
 	'inputType'               => 'text',
-	'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50')
+	'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50'),
+		'sql'	=> "varchar(255) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['checkout_pages'] = array
@@ -74,7 +79,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['checkout_pages'] = array
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['checkout_pages'],
 	'exclude'                 => true,
 	'inputType'               => 'pageTree',
-	'eval'                    => array('fieldType'=>'checkbox')
+	'eval'                    => array('fieldType'=>'checkbox'),
+		'sql'	=> "blob NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['netprice_groups'] = array
@@ -83,21 +89,24 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['netprice_groups'] = array
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
 	'foreignKey'              => 'tl_member_group.name',
-	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr')
+	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr'),
+		'sql'	=> "blob NULL'"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_guests'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['vatcheck_guests'],
 	'exclude'                 => true,
-	'inputType'               => 'checkbox'
+	'inputType'               => 'checkbox',
+		'sql'	=> "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_member'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['vatcheck_member'],
 	'exclude'                 => true,
-	'inputType'               => 'checkbox'
+	'inputType'               => 'checkbox',
+		'sql'	=> "char(1) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_groups'] = array
@@ -107,7 +116,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_groups'] = array
 	'filter'                  => true,
 	'inputType'               => 'checkboxWizard',
 	'foreignKey'              => 'tl_member_group.name',
-	'eval'                    => array('multiple'=>true)
+	'eval'                    => array('multiple'=>true),
+		'sql'	=> "blob NULL"
 );
 
 
