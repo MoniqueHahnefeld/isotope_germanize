@@ -31,3 +31,4 @@ ClassLoader::addClasses(array
 	'IsotopeGermanize' => 'system/modules/isotope_germanize/classes/IsotopeGermanize.php'
 	
 	
+));
