@@ -1,4 +1,4 @@
-/**
+<?php /**
  * 
  * @package   isotope_germize
  * @author    Monique Hahnefeld
@@ -28,3 +28,5 @@ ClassLoader::addClasses(array
 	
 	
 ));
+
+?>

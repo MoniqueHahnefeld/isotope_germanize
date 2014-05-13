@@ -91,7 +91,7 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['netprice_groups'] = array
 	'inputType'               => 'checkbox',
 	'foreignKey'              => 'tl_member_group.name',
 	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr'),
-		'sql'	=> "blob NULL'"
+		'sql'	=> "blob NULL"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_guests'] = array

@@ -33,7 +33,7 @@
  */
 $GLOBALS['TL_DCA']['tl_iso_tax_class']['palettes']['default'] .= ';{germanize_legend},germanize_price,germanize_rate';
 
-
+//var_dump($GLOBALS['TL_DCA']['tl_iso_tax_class']['palettes']['default']);
 /**
  * Fields
  */
@@ -46,7 +46,7 @@ $GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_price'] = array
     'options'       => array('gross', 'net'),
     'reference'     => &$GLOBALS['TL_LANG']['tl_iso_tax_class'],
     'eval'          => array('mandatory'=>true, 'tl_class'=>'w50'),
-    'sgl'       => "varchar(5) NOT NULL default ''"
+    'sql'       => "varchar(5) NOT NULL default ''"
 );
 
 $GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_rate'] = array
@@ -55,5 +55,5 @@ $GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_rate'] = array
     'exclude'       => true,
     'inputType'     => 'text',
     'eval'          => array('rgxp'=>digit, 'mandatory'=>true, 'tl_class'=>'w50'),
-    'sgl'       => "decimal(12,2) NOT NULL default '0.00"
+    'sql'       => "decimal(12,2) NOT NULL default '0.00'"
 );

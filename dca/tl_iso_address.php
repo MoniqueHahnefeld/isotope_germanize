@@ -21,7 +21,7 @@
 
 $GLOBALS['TL_DCA']['tl_iso_address']['palettes']['default'] = str_replace('vat_no','vat_no,vat_no_ok',$GLOBALS['TL_DCA']['tl_iso_address']['palettes']['default']);
 
-
+//var_dump($GLOBALS['TL_DCA']['tl_iso_address']['palettes']['default']);
 /**
  * Add fields
  */
@@ -33,7 +33,7 @@ $GLOBALS['TL_DCA']['tl_iso_address']['fields']['vat_no_ok'] = array
 	'filter'				=> true,
 	'inputType'				=> (TL_MODE=='BE' ? 'select':'hidden'),
 	'options'				=> array('nok', 'nok_invalid', 'nok_simple', 'nok_qualified', 'ok_qualified', 'ok_manual'),
-	'reference'				=> &$GLOBALS['TL_LANG']['tl_iso_addresses'],
+	'reference'				=> &$GLOBALS['TL_LANG']['tl_iso_address'],
 	'default'				=> 'nok',
 	'eval'					=> array('feEditable'=>true, 'feViewable'=>true, 'feGroup'=>'personal', 'tl_class'=>'w50 m12'),
 	'sql'		=>"varchar(16) NOT NULL default 'nok'"

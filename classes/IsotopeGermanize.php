@@ -14,15 +14,7 @@
  * @filesource
  */
 
-/*
-check out
-https://github.com/isotope/core/blob/support/1.4/system/modules/isotope/IsotopeFrontend.php
-https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionItem.php
-https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Model/ProductCollectionSurcharge.php
-https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isotope/Interfaces/IsotopeProductCollectionSurcharge.php
-
-
-*/
+use Haste\Haste;
 /**
  * German shop functionality
  *
@@ -30,7 +22,7 @@ https://github.com/isotope/core/blob/master/system/modules/isotope/library/Isoto
  * @author     Christian de la Haye <service@delahaye.de>
  * @author     Andreas Schempp <andreas.schempp@terminal42.ch>
  */
-class IsotopeGermanize extends IsotopeFrontend
+class IsotopeGermanize extends FrontendTemplate
 {
 
     protected static $arrEuCountries = array('at', 'be', 'bg', 'cy', 'cz', 'de', 'dk', 'es', 'fi', 'fr', 'gb', 'gr', 'hu', 'ie', 'it', 'je', 'lt', 'lu', 'lv', 'mt', 'nl', 'pl', 'pt', 'ro', 'se', 'si', 'sk');
@@ -39,7 +31,9 @@ class IsotopeGermanize extends IsotopeFrontend
 
 	protected $arrCheckData = array();
 
-
+	
+	/*handle fields of config	shipping_page,shipping_rel,shipping_target,shipping_note,checkout_pages,netprice_groups,vatcheck_guests,vatcheck_member,vatcheck_groups*/
+	//var_dump($this);
     /**
      * Overwrite the default Isotope tax calculation if german store config is active
      * @param  Database_Result
@@ -83,7 +77,7 @@ class IsotopeGermanize extends IsotopeFrontend
     			(
     				'label'			=> $GLOBALS['TL_LANG']['iso_germanize']['vatCart']['net'],
     				'price'			=> $strPercent,
-    				'total_price'	=> Isotope::getInstance()->roundPrice($fltTax, $objTaxClass->applyRoundingIncrement),
+    				'total_price'	=> Isotope\Isotope::roundPrice($fltTax, $objTaxClass->applyRoundingIncrement),
     				'add'			=> true,
     			));
 
@@ -96,7 +90,7 @@ class IsotopeGermanize extends IsotopeFrontend
     			(
     				'label'			=> $GLOBALS['TL_LANG']['iso_germanize']['vatCart']['gross'],
     				'price'			=> $strPercent,
-    				'total_price'	=> Isotope::getInstance()->roundPrice($fltTax, $objTaxClass->applyRoundingIncrement),
+    				'total_price'	=> Isotope\Isotope::roundPrice($fltTax, $objTaxClass->applyRoundingIncrement),
     				'add'			=> false,
     			));
 
@@ -113,7 +107,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function isActive()
     {
-        return (bool) Isotope::getInstance()->Config->germanize;
+        return (bool) Isotope\Isotope::getConfig()->germanize;
     }
 
 
@@ -125,7 +119,7 @@ class IsotopeGermanize extends IsotopeFrontend
     {
         global $objPage;
 
-        $arrPages = deserialize(Isotope::getInstance()->Config->checkout_pages, true);
+        $arrPages = deserialize(Isotope\Isotope::getConfig()->checkout_pages, true);
 
         return in_array($objPage->id, $arrPages);
     }
@@ -137,7 +131,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function isGermany()
     {
-        $strCountry = Isotope::getInstance()->Cart->shippingAddress->country;
+        $strCountry = Isotope\Isotope::getCart()->shippingAddress->country;
 
         return ($strCountry == 'de' || $strCountry == '');
     }
@@ -149,7 +143,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function isEuropeanUnion()
     {
-        return in_array(Isotope::getInstance()->Cart->shippingAddress->country, self::$arrEuCountries);
+        return in_array(Isotope\Isotope::getCart()->shippingAddress->country, self::$arrEuCountries);
     }
 
 
@@ -164,8 +158,9 @@ class IsotopeGermanize extends IsotopeFrontend
         }
 
         $arrUserGroups = FrontendUser::getInstance()->groups;
-        $arrNetGroups = deserialize(Isotope::getInstance()->Config->netprice_groups);
-
+        $arrNetGroups = deserialize(Isotope\Isotope::getConfig()->netprice_groups);
+		
+		
         if (!is_array($arrUserGroups) || !is_array($arrNetGroups)) {
             return false;
         }
@@ -180,7 +175,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function hasVatNo()
     {
-        return Isotope::getInstance()->Cart->shippingAddress->vat_no != '';
+        return Isotope\Isotope::getCart()->shippingAddress->vat_no != '';
     }
 
 
@@ -197,8 +192,8 @@ class IsotopeGermanize extends IsotopeFrontend
 		}
 		
         if (!self::hasVatNo() 
-        	|| (FE_USER_LOGGED_IN !== true && !Isotope::getInstance()->Config->vatcheck_guests)
-        	|| (Isotope::getInstance()->Cart->shippingAddress->vat_no_ok != 'ok_qualified' && Isotope::getInstance()->Cart->shippingAddress->vat_no_ok != 'ok_manual')) {
+        	|| (FE_USER_LOGGED_IN !== true && !Isotope\Isotope::getConfig()->vatcheck_guests)
+        	|| (Isotope\Isotope::getCart()->shippingAddress->vat_no_ok != 'ok_qualified' && Isotope\Isotope::getCart()->shippingAddress->vat_no_ok != 'ok_manual')) {
             return false;
         }
 
@@ -262,7 +257,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function getTaxPercentForRate($fltRate)
     {
-		$arrFormat = $GLOBALS['ISO_NUM'][Isotope::getInstance()->Config->currencyFormat];
+		$arrFormat = $GLOBALS['ISO_NUM'][Isotope\Isotope::getConfig()->currencyFormat];
     	
 		return number_format($fltRate, (floor($fltRate)==$fltRate ? 0 : 1), $arrFormat[1], $arrFormat[2]).'%';
     }
@@ -294,15 +289,15 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     public static function getTaxNotice()
     {
-        $objAddress = Isotope::getInstance()->Cart->shippingAddress;
-        $arrCountries = Isotope::getInstance()->call('getCountries');
+        $objAddress = Isotope\Isotope::getCart()->shippingAddress;
+        $arrCountries = Haste::getInstance()->call('getCountries');
         $strCountry = $arrCountries[$objAddress->country];
 
-        $b = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEuGuest'], $strCountry);
-        $c = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEu'], $strCountry);
-        $d = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['confirmedVatNo'], $objAddress->vat_no);
-        $e = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['unconfirmedVatNo'], $objAddress->vat_no, $strCountry);
-        $f = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['noVatNo'], $strCountry);
+        $nonEUGuest = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEuGuest'], $strCountry);
+        $nonEU = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEu'], $strCountry);
+        $confirmedVatNo = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['confirmedVatNo'], $objAddress->vat_no);
+        $unconfirmedVatNo = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['unconfirmedVatNo'], $objAddress->vat_no, $strCountry);
+        $noVatNo = sprintf($GLOBALS['TL_LANG']['iso_germanize']['notes']['noVatNo'], $strCountry);
 
         if (self::isGermany()) {
             return '';
@@ -311,31 +306,31 @@ class IsotopeGermanize extends IsotopeFrontend
         if (!self::isOnCheckoutPage()) {
 
             if (FE_USER_LOGGED_IN === true && !self::isEuropeanUnion()) {
-                return $c;
+                return $nonEU;
             } elseif (FE_USER_LOGGED_IN === true && self::isEuropeanUnion() && self::hasValidVatNo()) {
-                return $d;
+                return $confirmedVatNo;
             } elseif (self::hasNetPriceGroup()) {
 
                 if (self::isEuropeanUnion() && self::hasVatNo() && !self::hasValidVatNo()) {
-                    return $e;
+                    return $unconfirmedVatNo;
                 } else {
-                    return $b;
+                    return $nonEUGuest;
                 }
 
             } elseif (self::isEuropeanUnion()) {
-                return $f;
+                return $noVatNo;
             } else {
-                return $b;
+                return $nonEUGuest;
             }
 
         } else {
 
             if (!self::isEuropeanUnion()) {
-                return $c;
+                return $nonEU;
             } elseif (self::isEuropeanUnion() && self::hasValidVatNo()) {
-                return $d;
+                return $confirmedVatNo;
             } elseif (self::isEuropeanUnion() && self::hasVatNo()) {
-                return $e;
+                return $unconfirmedVatNo;
             } else {
                 return '';
             }
@@ -352,10 +347,14 @@ class IsotopeGermanize extends IsotopeFrontend
 	 */
 	public function injectNotes($strBuffer, $strTemplate)
 	{
+	
+		
         // Use only if the shop is defined as German
         if (!IsotopeGermanize::isActive()) {
             return $strBuffer;
         }
+//var_dump($strBuffer);
+//echo $strTemplate.'<br>';
 
 		switch($strTemplate)
 		{
@@ -363,6 +362,15 @@ class IsotopeGermanize extends IsotopeFrontend
 			case 'iso_list_variants':
 			case 'iso_reader_default':
 				// Pricing note at the product
+				/*
+				handle vars 
+				var_dump($intTaxClass);
+				var_dump($blnShippingExempt);
+				$txt
+				*/
+			
+				var_dump($this);
+				
 				if(strpos($strBuffer,'isotopeGerman::notePricing')===false)
 				{
 					// Inject the pricing note after the baseprice or the price
@@ -371,12 +379,16 @@ class IsotopeGermanize extends IsotopeFrontend
 					{
 						$strSearchTag = 'baseprice';
 					}
-					return preg_replace('#\<div class="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing').'\2', $strBuffer);
+					$newBuffer= preg_replace('#\<div class="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing::false::false::&nbsp;Test').'\2', $strBuffer);
+					
+					var_dump($this->isotopeGermanizeInsertTags('isotopeGerman::notePricing:::::: &nbsp;Test'));
+					//exit;
 				}
 				break;
 
-			case 'iso_cart_full':
+			case 'mod_iso_cart':
 				// VAT note in the main cart
+				//echo '<pre>'.$strBuffer.'</pre>';
 				if(strpos($strBuffer,'isotopeGerman::noteVat')===false)
 				{
 					$strBuffer = str_replace('<div class="submit_container">',$this->isotopeGermanizeInsertTags('isotopeGerman::noteVat').'<div class="submit_container">',$strBuffer);
@@ -398,8 +410,12 @@ class IsotopeGermanize extends IsotopeFrontend
 				}
 				break;
 
-			case 'iso_checkout_order_products':
+			case 'iso_collection_default':
 				// VAT note in the checkout product overview (has to be above the products/total)
+				
+//				var_dump(FrontendUser::getInstance()->groups);
+//				echo '<pre>'.$strBuffer.'</pre>';
+				
 				if(strpos($strBuffer,'isotopeGerman::noteVat')===false)
 				{
 					return $this->isotopeGermanizeInsertTags('isotopeGerman::noteVat').$strBuffer;
@@ -454,7 +470,7 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     protected function getShippingNotice()
     {
-	    return Isotope::getInstance()->Config->shipping_note ? Controller::replaceInsertTags('{{insert_article::'.Isotope::getInstance()->Config->shipping_note.'}}') : false;
+	    return Isotope\Isotope::getConfig()->shipping_note ? Controller::replaceInsertTags('{{insert_article::'.Isotope\Isotope::getConfig()->shipping_note.'}}') : false;
     }
 
 
@@ -511,7 +527,7 @@ class IsotopeGermanize extends IsotopeFrontend
 		// Optional parameter txt for text only
 		if($txt)
 		{
-			$strNote = trim(strip_tags($strNote));
+			$strNote = trim(strip_tags($strNote)).$txt;
 		}
 		
 		return $strNote;
@@ -550,13 +566,13 @@ class IsotopeGermanize extends IsotopeFrontend
     {
         global $objPage;
 
-		if(Isotope::getInstance()->Config->shipping_page < 1)
+		if(Isotope\Isotope::getConfig()->shipping_page < 1)
 		{
 			return false;
 		}
 
 		// Build link to the shipping costs page
-		$objTarget = $this->getPageDetails(Isotope::getInstance()->Config->shipping_page);
+		$objTarget = $this->getPageDetails(Isotope\Isotope::getConfig()->shipping_page);
 
 		if ($GLOBALS['TL_CONFIG']['addLanguageToUrl'])
 		{
@@ -569,16 +585,16 @@ class IsotopeGermanize extends IsotopeFrontend
 
 		$strLink = '<a href="'.$strUrl.'"';
 
-		if (strncmp(Isotope::getInstance()->Config->shipping_rel, 'lightbox', 8) !== 0 || $objPage->outputFormat == 'xhtml')
+		if (strncmp(Isotope\Isotope::getConfig()->shipping_rel, 'lightbox', 8) !== 0 || $objPage->outputFormat == 'xhtml')
 		{
-			$strLink .= ' rel="'. Isotope::getInstance()->Config->shipping_rel .'"';
+			$strLink .= ' rel="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
 		}
 		else
 		{
-			$strLink .= ' data-lightbox="'. Isotope::getInstance()->Config->shipping_rel .'"';
+			$strLink .= ' data-lightbox="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
 		}
 
-		if(Isotope::getInstance()->Config->shipping_target)
+		if(Isotope\Isotope::getConfig()->shipping_target)
 		{
 			$strLink .= ($objPage->outputFormat == 'xhtml') ? ' onclick="return !window.open(this.href)"' : ' target="_blank"';
 		}
@@ -595,7 +611,7 @@ class IsotopeGermanize extends IsotopeFrontend
 	public function updateVatCheck()
     {
 		// Set the data to check as it is not yet stored in the object
-		$addrType = (Isotope::getInstance()->Cart->shippingAddress_id != -1 ? 'shipping_address' : 'billing_address');
+		$addrType = (Isotope\Isotope::getConfig()->shippingAddress_id != -1 ? 'shipping_address' : 'billing_address');
 
 		$this->arrCheckData = array(
 			'addr_type'  => $addrType,
@@ -631,11 +647,11 @@ class IsotopeGermanize extends IsotopeFrontend
      */
     protected function checkVatNo()
     {
-		if(!Isotope::getInstance()->Config->vat_no
+		if(!Isotope\Isotope::getConfig()->vat_no
 			|| self::isGermany()
 			|| !self::isEuropeanUnion()
-			|| (!FE_USER_LOGGED_IN && !Isotope::getInstance()->Config->vatcheck_guests)
-			|| (FE_USER_LOGGED_IN && !Isotope::getInstance()->Config->vatcheck_member)
+			|| (!FE_USER_LOGGED_IN && !Isotope\Isotope::getConfig()->vatcheck_guests)
+			|| (FE_USER_LOGGED_IN && !Isotope\Isotope::getConfig()->vatcheck_member)
 			|| !$this->addressHasbeenModified()
 			)
 		{
@@ -652,7 +668,7 @@ class IsotopeGermanize extends IsotopeFrontend
 		}
 
 		// Formal check own vat_no
-	   	if(!$strOwnVatNo = self::preCheckVatNo(Isotope::getInstance()->Config->vat_no))
+	   	if(!$strOwnVatNo = self::preCheckVatNo(Isotope\Isotope::getConfig()->vat_no))
 	   	{
 			return array(
 				'status' => 'nok_invalid',
@@ -673,7 +689,7 @@ class IsotopeGermanize extends IsotopeFrontend
 		$arrCheck = $this->verifyVatNo($strCustomerVatNo, $strOwnVatNo);
 
 		// don't activate if no member groups shall be auto-activated
-		$arrCheck['status'] = ($arrCheck['status'] == 'ok_qualified' && FE_USER_LOGGED_IN && count(array_intersect(Isotope::getInstance()->Config->vatcheck_groups, FrontendUser::getInstance()->groups)) < 1) ? 'nok_qualified' : $arrCheck['status'];
+		$arrCheck['status'] = ($arrCheck['status'] == 'ok_qualified' && FE_USER_LOGGED_IN && count(array_intersect(Isotope\Isotope::getConfig()->vatcheck_groups, FrontendUser::getInstance()->groups)) < 1) ? 'nok_qualified' : $arrCheck['status'];
 
 		return $arrCheck;
 	}
@@ -862,7 +878,7 @@ class IsotopeGermanize extends IsotopeFrontend
 			'city'          => $this->arrCheckData['city'],
 			'country'       => $arrCountries[$this->arrCheckData['country']],
 			'member_id'     => (FE_USER_LOGGED_IN ? FrontendUser::getInstance()->id : $GLOBALS['TL_LANG']['iso_germanize']['guest_order']),
-			'address_id'    => (Isotope::getInstance()->Cart->shippingAddress_id > 0 ? Isotope::getInstance()->Cart->shippingAddress_id : ''),
+			'address_id'    => (Isotope\Isotope::getCart()->shippingAddress_id > 0 ? Isotope\Isotope::getCart()->shippingAddress_id : ''),
 			'check_date'    => $arrCheck['check_date'],
 			'check_time'    => $arrCheck['check_time'],
 			'check_company' => $arrCheck['check_company'],
@@ -886,7 +902,7 @@ class IsotopeGermanize extends IsotopeFrontend
 				$objEmail->text    = str_replace('##'.$k.'##', $v, $objEmail->text);
 			}
 
-			$objEmail->sendTo(Isotope::getInstance()->Config->email);
+			$objEmail->sendTo(Isotope\Isotope::getConfig()->email);
 		}
 		else
 		{
@@ -907,7 +923,7 @@ class IsotopeGermanize extends IsotopeFrontend
 					$objEmail->text    = str_replace('##'.$k.'##', $v, $objEmail->text);
 				}
 
-				$objEmail->sendTo(Isotope::getInstance()->Config->email);
+				$objEmail->sendTo(Isotope\Isotope::getConfig()->email);
 			}
 		}
 	}
@@ -959,7 +975,7 @@ class IsotopeGermanize extends IsotopeFrontend
 
 		foreach(array('vat_no','company','street_1','postal','city','country') as $strRelevant)
 		{
-			if(Input::getInstance()->post($this->arrCheckData['addr_type'].'_'.$strRelevant) && Input::getInstance()->post($this->arrCheckData['addr_type'].'_'.$strRelevant) != Isotope::getInstance()->Cart->shippingAddress->$strRelevant)
+			if(Input::getInstance()->post($this->arrCheckData['addr_type'].'_'.$strRelevant) && Input::getInstance()->post($this->arrCheckData['addr_type'].'_'.$strRelevant) != Isotope\Isotope::getCart()->shippingAddress->$strRelevant)
 			{
 				$hasChanged = true;
 			}
@@ -975,11 +991,11 @@ class IsotopeGermanize extends IsotopeFrontend
 	 */
 	public function isotopeGermanizeOrderEmailData(IsotopeOrder $objOrder, $arrData)
 	{
-		return = array_merge($arrData, array
+		return array_merge($arrData, array
 		(
-			'germ_shipping_note'		=> Isotope::getInstance()->Config->shipping_note,
+			'germ_shipping_note'		=> Isotope\Isotope::getConfig()->shipping_note,
 			'germ_shipping_page'		=> $this->getShippingLink(),
-			'germ_vat_no_ok'			=> Isotope::getInstance()->Cart->shippingAddress->vat_no_ok,
+			'germ_vat_no_ok'			=> Isotope\Isotope::getCart()->shippingAddress->vat_no_ok,
 			'germ_vat_no'				=> $this->arrCheckData['vat_no'],
 		));
 	}
