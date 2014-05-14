@@ -1,8 +1,3 @@
-<?php
-
-var_dump($this);
-?>
-
 <form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" name="iso<?php echo rand(); ?>" method="post" enctype="<?php echo $this->enctype; ?>">
 <div class="formbody" itemscope itemtype="http://schema.org/Product">
 <input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formSubmit; ?>">
@@ -26,7 +21,15 @@ var_dump($this);
 <div class="description" itemprop="description"><?php echo $this->generateAttribute('description'); ?></div><?php endif; ?>
 <div class="offer" itemscope itemtype="http://schema.org/Offer">
 <div class="price" itemprop="price"><?php echo $this->generatePrice(); ?></div><?php if($this->baseprice): ?>
-<div class="baseprice"><?php echo $this->generateAttribute('baseprice'); ?></div><?php endif; ?>
+<div class="baseprice"><?php echo $this->generateAttribute('baseprice'); ?></div>
+<?php endif; ?>
+<div class="notePricing">
+<?php if (!$this->config["noShipping"]): ?>
+<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['shipping'].''.$this->config["shippingLink"];?>
+<?php else: ?>
+<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['noShipping']; ?>
+<?php endif; ?>
+</div>
 </div>
 <?php if($this->buttons): ?>
 <div class="submit_container">

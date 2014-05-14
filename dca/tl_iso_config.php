@@ -22,7 +22,7 @@ $GLOBALS['TL_DCA']['tl_iso_config']['palettes']['__selector__'][] = 'germanize';
 
 $GLOBALS['TL_DCA']['tl_iso_config']['palettes']['default'] .= ';{germanize_legend:hide},germanize';
 
-$GLOBALS['TL_DCA']['tl_iso_config']['subpalettes']['germanize'] .= 'shipping_page,shipping_rel,shipping_target,shipping_note,checkout_pages,netprice_groups,vatcheck_guests,vatcheck_member,vatcheck_groups';
+$GLOBALS['TL_DCA']['tl_iso_config']['subpalettes']['germanize'] .= 'shipping_page,shipping_rel,shipping_target,shipping_note,checkout_pages,vatcheck_guests,vatcheck_member,vatcheck_groups';
 
 
 /**
@@ -84,15 +84,6 @@ $GLOBALS['TL_DCA']['tl_iso_config']['fields']['checkout_pages'] = array
 		'sql'	=> "blob NULL"
 );
 
-$GLOBALS['TL_DCA']['tl_iso_config']['fields']['netprice_groups'] = array
-(
-	'label'                   => &$GLOBALS['TL_LANG']['tl_iso_config']['netprice_groups'],
-	'exclude'                 => true,
-	'inputType'               => 'checkbox',
-	'foreignKey'              => 'tl_member_group.name',
-	'eval'                    => array('multiple'=>true, 'tl_class'=>'clr'),
-		'sql'	=> "blob NULL"
-);
 
 $GLOBALS['TL_DCA']['tl_iso_config']['fields']['vatcheck_guests'] = array
 (

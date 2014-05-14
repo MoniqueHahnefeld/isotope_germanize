@@ -13,6 +13,13 @@
  * @filesource
  */
 
+/**
+ * Frontend modules
+ */
+$GLOBALS['FE_MOD']['isotope']['iso_productlist']= 'MHAHNEFELD\Module\ProductList';
+$GLOBALS['FE_MOD']['isotope']['iso_productvariantlist']= 'MHAHNEFELD\Module\ProductVariantList';
+$GLOBALS['FE_MOD']['isotope']['iso_productreader']= 'MHAHNEFELD\Module\ProductReader';
+
 
 /**
  * Settings

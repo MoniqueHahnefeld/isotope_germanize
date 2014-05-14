@@ -25,14 +25,12 @@ $GLOBALS['TL_LANG']['MSC']['confirmOrder']                          = 'Kaufen';
  * Notes at the products, in the cart etc
  */
 
-$GLOBALS['TL_LANG']['iso_germanize']['vatCart']['gross']            = 'enthaltene MwSt.';
-$GLOBALS['TL_LANG']['iso_germanize']['vatCart']['net']              = 'zzgl. MwSt.';
 
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree']       = 'Steuerfrei';
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['linkname']       = 'Versand';
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['shipping']       = 'zzgl. ';
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['noShipping']     = ', kein Versandartikel';
 
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_shipping']       = '%s zzgl. <a>Versand</a>';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_noShipping']     = '%s, kein Versandartikel';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_shipping']   = 'zzgl. <a>Versand</a>';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_noShipping'] = 'kein Versandartikel';
 
 $GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEuGuest']        = 'Die Preise werden unabhängig vom Lieferland %s inkl. MwSt. angezeigt. Bei Lieferung in nicht-EU-Länder wird diese in der Bestellübersicht nicht berücksichtigt.';
 $GLOBALS['TL_LANG']['iso_germanize']['notes']['nonEu']             = 'Als Lieferung an einen Leistungsempfänger in dem nicht-EU-Land %s ist der Umsatz nicht steuerbar. Es wird daher keine MwSt. berechnet.';

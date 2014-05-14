@@ -1,6 +1,6 @@
 <?php /**
  * 
- * @package   isotope_germize
+ * @package   isotope_germanize
  * @author    Monique Hahnefeld
  * @license   LGPL
  * @copyright 2014 Monique Hahnefeld
@@ -9,18 +9,23 @@
 
 /**
  * Register the namespaces
-
+ */
 ClassLoader::addNamespaces(array
 (
-	'Contao'
+	'MHAHNEFELD\Module'
 ));
- */
+
 
 /**
  * Register the classes
  */
 ClassLoader::addClasses(array
 (
+	
+	//Modules
+	'MHAHNEFELD\Module\ProductVariantList' => 'system/modules/isotope_germanize/Module/ProductVariantList.php',
+	'MHAHNEFELD\Module\ProductList' => 'system/modules/isotope_germanize/Module/ProductList.php',
+	'MHAHNEFELD\Module\ProductReader' => 'system/modules/isotope_germanize/Module/ProductReader.php',
 	// Classes
 	
 	'IXR_Library' => 'system/modules/isotope_germanize/classes/IXR_Library.php',

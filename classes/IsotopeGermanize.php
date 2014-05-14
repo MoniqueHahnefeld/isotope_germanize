@@ -197,7 +197,7 @@ class IsotopeGermanize extends FrontendTemplate
 				return $newBuffer;
 			}
 			
-
+			break;
 			case 'iso_reader_default':
 				// Pricing note at the product
 				
