@@ -9,7 +9,9 @@ Use Globals from Germanizr + tax_class->label
 
 extend iso_reader_default.html5 + iso_list_default + iso_list_variants
 
-
+check why this not work if i overwrite ProductList   
+	 $objResponse = new HtmlResponse($objProduct->generate($arrConfig));    
+                $objResponse->send();
 
 isotope_germanize
 =================
