@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 ##todos for update
 
 extent modul Checkout->canCheckout();
@@ -13,8 +11,7 @@ overwrite ProduktVariantList-Modul, because it extends ProduktList-Modul
 extend iso_reader_default.html5 + iso_list_default + iso_list_variants
 
 
-=======
->>>>>>> add language vars #taxfree var
+=================
 isotope_germanize
 =================
 
