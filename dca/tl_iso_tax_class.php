@@ -27,33 +27,33 @@
  * @coauthor 2014 Monique Hahnefeld update to contao 3, isotope 2
  */
 
-
+//wird nicht mehr benötigt
 /**
  * Palettes
  */
-$GLOBALS['TL_DCA']['tl_iso_tax_class']['palettes']['default'] .= ';{germanize_legend},germanize_price,germanize_rate';
+//$GLOBALS['TL_DCA']['tl_iso_tax_class']['palettes']['default'] .= ';{germanize_legend},germanize_price,germanize_rate';
 
 //var_dump($GLOBALS['TL_DCA']['tl_iso_tax_class']['palettes']['default']);
 /**
  * Fields
  */
-$GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_price'] = array
-(
-    'label'         => &$GLOBALS['TL_LANG']['tl_iso_tax_class']['germanize_price'],
-    'exclude'       => true,
-    'default'       => 'gross',
-    'inputType'     => 'radio',
-    'options'       => array('gross', 'net'),
-    'reference'     => &$GLOBALS['TL_LANG']['tl_iso_tax_class'],
-    'eval'          => array('mandatory'=>true, 'tl_class'=>'w50'),
-    'sql'       => "varchar(5) NOT NULL default ''"
-);
-
-$GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_rate'] = array
-(
-    'label'         => &$GLOBALS['TL_LANG']['tl_iso_tax_class']['germanize_rate'],
-    'exclude'       => true,
-    'inputType'     => 'text',
-    'eval'          => array('rgxp'=>digit, 'mandatory'=>true, 'tl_class'=>'w50'),
-    'sql'       => "decimal(12,2) NOT NULL default '0.00'"
-);
+//$GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_price'] = array
+//(
+//    'label'         => &$GLOBALS['TL_LANG']['tl_iso_tax_class']['germanize_price'],
+//    'exclude'       => true,
+//    'default'       => 'gross',
+//    'inputType'     => 'radio',
+//    'options'       => array('gross', 'net'),
+//    'reference'     => &$GLOBALS['TL_LANG']['tl_iso_tax_class'],
+//    'eval'          => array('mandatory'=>true, 'tl_class'=>'w50'),
+//    'sql'       => "varchar(5) NOT NULL default ''"
+//);
+//
+//$GLOBALS['TL_DCA']['tl_iso_tax_class']['fields']['germanize_rate'] = array
+//(
+//    'label'         => &$GLOBALS['TL_LANG']['tl_iso_tax_class']['germanize_rate'],
+//    'exclude'       => true,
+//    'inputType'     => 'text',
+//    'eval'          => array('rgxp'=>digit, 'mandatory'=>true, 'tl_class'=>'w50'),
+//    'sql'       => "decimal(12,2) NOT NULL default '0.00'"
+//);

@@ -28,10 +28,9 @@ $GLOBALS['TL_LANG']['MSC']['confirmOrder']                          = 'Kaufen';
 $GLOBALS['TL_LANG']['iso_germanize']['vatCart']['gross']            = 'enthaltene MwSt.';
 $GLOBALS['TL_LANG']['iso_germanize']['vatCart']['net']              = 'zzgl. MwSt.';
 
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['gross_shipping']     = 'inkl. %sMwSt. zzgl. <a>Versand</a>';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['gross_noShipping']   = 'inkl. %sMwSt., kein Versandartikel';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['net_shipping']       = 'zzgl. %sMwSt. zzgl. <a>Versand</a>';
-$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['net_noShipping']     = 'zzgl. %sMwSt., kein Versandartikel';
+
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_shipping']       = '%s zzgl. <a>Versand</a>';
+$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_noShipping']     = '%s, kein Versandartikel';
 $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_shipping']   = 'zzgl. <a>Versand</a>';
 $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_noShipping'] = 'kein Versandartikel';
 

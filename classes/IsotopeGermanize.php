@@ -15,6 +15,12 @@
  */
 
 use Haste\Haste;
+use Isotope\Interfaces\IsotopeProduct;
+use Isotope\Model\Product;
+use Isotope\Model\ProductType;
+use Isotope\Model\ProductPrice;
+use Isotope\Model\TaxClass;
+
 /**
  * German shop functionality
  *
@@ -99,8 +105,8 @@ class IsotopeGermanize extends FrontendTemplate
     		return array();
         }
     }
-
-
+	
+	
     /**
      * Return true if german tax management is active
      * @return bool
@@ -358,43 +364,95 @@ class IsotopeGermanize extends FrontendTemplate
 
 		switch($strTemplate)
 		{
-			case 'iso_list_default':
-			case 'iso_list_variants':
+			case	'mod_iso_productlist':
+			break;
+			//var_dump($strBuffer);
+			$objProduct = Product::findAvailableByIdOrAlias(\Haste\Input\Input::getAutoItem('product'));
+			//$objProduct->getProductId()
+			$productPrice = ProductPrice::findAll();
+			$is_Variant=$objProduct->isVariant();
+			$hasVariant=$objProduct->hasVariantPrices();
+			$hasAdvancedPrices=$objProduct->hasAdvancedPrices(); 
+			
+			$taxID = $objProduct->getPrice()->tax_class;
+			$taxModel = TaxClass::findByID($taxID)->row();
+			$taxLabel = $taxModel['label'];
+			
+//				echo '<!-- <pre>|'.array_key_exists("id",$objProduct).'|';
+//				var_dump($taxModel['label']);
+//					var_dump($objProduct->getProductId());
+//				var_dump($objProduct->getOptions());
+		//	echo '</pre> -->';
+			
+			//var_dump($objProduct->type);
+			$blnShippingExempt=($objProduct->isExemptFromShipping()) ? 'true' : 'false'; 
+			
+			
+			if(strpos($strBuffer,'notePricing')===false)
+			{
+				// Inject the pricing note after the baseprice or the price
+				$strSearchTag = 'price';
+//				if(strpos($strBuffer,'class="baseprice')!==false)
+//				{
+//					$strSearchTag = 'baseprice';
+//				}
+			$newBuffer= preg_replace('#\<div class="'.$strSearchTag.'" itemprop="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'" itemprop="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing::'.$taxLabel.'::'.$blnShippingExempt.'').'\2', $strBuffer);
+				
+				
+				return $newBuffer;
+			}
+			
+//			case 'iso_list_default':
+//			case 'iso_list_variants':
 			case 'iso_reader_default':
 				// Pricing note at the product
-				/*
-				handle vars 
-				var_dump($intTaxClass);
-				var_dump($blnShippingExempt);
-				$txt
-				*/
-			
-				var_dump($this);
 				
-				if(strpos($strBuffer,'isotopeGerman::notePricing')===false)
+				$objProduct = Product::findAvailableByIdOrAlias(\Haste\Input\Input::getAutoItem('product'));
+				
+				$productPrice = ProductPrice::findAll();
+				$is_Variant=$objProduct->isVariant();
+				$hasVariant=$objProduct->hasVariantPrices();
+				$hasAdvancedPrices=$objProduct->hasAdvancedPrices(); 
+				
+				$taxID = $objProduct->getPrice()->tax_class;
+				$taxModel = TaxClass::findByID($taxID)->row();
+				$taxLabel = $taxModel['label'];
+				
+				$blnShippingExempt=($objProduct->isExemptFromShipping()) ? 'true' : 'false'; 				
+				
+				if(strpos($strBuffer,'notePricing')===false)
 				{
 					// Inject the pricing note after the baseprice or the price
-					$strSearchTag = 'price';
-					if(strpos($strBuffer,'class="baseprice')!==false)
+					
+//					
+					if(strpos($strBuffer,'class="baseprice')===false)
+					{
+						$strSearchTag = 'price';
+					$newBuffer= preg_replace('#\<div class="'.$strSearchTag.'" itemprop="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'" itemprop="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing::'.$taxLabel.'::'.$blnShippingExempt.'').'\2', $strBuffer);
+					}
+					elseif(strpos($strBuffer,'class="baseprice')!==false)
 					{
 						$strSearchTag = 'baseprice';
+						
+						$newBuffer= preg_replace('#\<div class="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing::'.$taxLabel.'::'.$blnShippingExempt.'').'\2', $strBuffer);
+						
 					}
-					$newBuffer= preg_replace('#\<div class="'.$strSearchTag.'">(.*)\</div>(.*)#Uis', '<div class="'.$strSearchTag.'">\1</div>'.$this->isotopeGermanizeInsertTags('isotopeGerman::notePricing::false::false::&nbsp;Test').'\2', $strBuffer);
 					
-					var_dump($this->isotopeGermanizeInsertTags('isotopeGerman::notePricing:::::: &nbsp;Test'));
-					//exit;
+								
+					return $newBuffer;
+					
 				}
 				break;
 
 			case 'mod_iso_cart':
 				// VAT note in the main cart
-				//echo '<pre>'.$strBuffer.'</pre>';
-				if(strpos($strBuffer,'isotopeGerman::noteVat')===false)
+				
+				if(strpos($strBuffer,'noteVat')===false)
 				{
 					$strBuffer = str_replace('<div class="submit_container">',$this->isotopeGermanizeInsertTags('isotopeGerman::noteVat').'<div class="submit_container">',$strBuffer);
 				}
 				// shipping note in the main cart
-				if(strpos($strBuffer,'isotopeGerman::noteShipping')===false)
+				if(strpos($strBuffer,'noteShipping')===false)
 				{
 					$strBuffer = str_replace('<div class="submit_container">',$this->isotopeGermanizeInsertTags('isotopeGerman::noteShipping').'<div class="submit_container">',$strBuffer);
 				}
@@ -404,19 +462,19 @@ class IsotopeGermanize extends FrontendTemplate
 			case 'iso_checkout_shipping_method':
 			case 'iso_checkout_payment_method':
 				// VAT note in the other checkout steps
-				if(strpos($strBuffer,'isotopeGerman::noteVat')===false)
+				if(strpos($strBuffer,'noteVat')===false)
 				{
 					return $strBuffer.$this->isotopeGermanizeInsertTags('isotopeGerman::noteVat');
 				}
 				break;
-
+			case 'iso_collection_mini':
 			case 'iso_collection_default':
 				// VAT note in the checkout product overview (has to be above the products/total)
 				
 //				var_dump(FrontendUser::getInstance()->groups);
 //				echo '<pre>'.$strBuffer.'</pre>';
 				
-				if(strpos($strBuffer,'isotopeGerman::noteVat')===false)
+				if(strpos($strBuffer,'noteVat')===false)
 				{
 					return $this->isotopeGermanizeInsertTags('isotopeGerman::noteVat').$strBuffer;
 				}
@@ -441,7 +499,7 @@ class IsotopeGermanize extends FrontendTemplate
         }
 
 		$arrTag = trimsplit('::', $strTag);
-
+		//var_dump($arrTag );
 		if($arrTag[0] == 'isotopeGerman')
 		{
 			switch($arrTag[1])
@@ -478,10 +536,10 @@ class IsotopeGermanize extends FrontendTemplate
      * Return a price notice to be displayed at a single product
      * @return string
      */
-    protected function getPriceNotice($intTaxClass=false, $blnShippingExempt=false, $txt=false)
+    protected function getPriceNotice($TaxClassLabel=false, $blnShippingExempt=false, $txt=false)
     {
 		if ((FE_USER_LOGGED_IN === true && !self::isEuropeanUnion()) || (FE_USER_LOGGED_IN === true && !self::isGermany() && self::isEuropeanUnion() && self::hasValidVatNo())) {
-			if (!$blnShippingExempt)
+			if (!$blnShippingExempt||$blnShippingExempt!=='true')
 			{
 				$strNote = $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_shipping'];
 
@@ -491,37 +549,26 @@ class IsotopeGermanize extends FrontendTemplate
 			} else {
 				$strNote = $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree_noShipping'];
 			}
-		} elseif (self::hasNetPriceGroup()) {
-
-			$strTax = $this->getTaxRate($intTaxClass);
-			$strTax .= $strTax ? ' ' : '';
-
-			if (!$blnShippingExempt)
-			{
-				$strNote = $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['net_shipping'];
-
-				$strShippingLink = $this->getShippingLink();
-				
-				$strNote = sprintf(($strShippingLink ? str_replace('<a>',$strShippingLink, $strNote) : str_replace('<a>','',str_replace('</a>','', $strNote))), $strTax);
-			} else {
-
-				$strNote = sprintf($GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['net_noShipping'], $strTax);
-			}
 		} else {
 
-			$strTax = $this->getTaxRate($intTaxClass);
-			$strTax .= $strTax ? ' ' : '';
+			
+			$strTax = ($strTax!==false &&$strTax!=='false')? $TaxClassLabel.' ' : '';
 
-			if (!$blnShippingExempt)
+			if (!$blnShippingExempt||$blnShippingExempt!=='true')
 			{
-				$strNote = $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['gross_shipping'];
+				$strNote = $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_shipping'];
 
 				$strShippingLink = $this->getShippingLink();
 				
+				
 				$strNote = sprintf(($strShippingLink ? str_replace('<a>',$strShippingLink, $strNote) : str_replace('<a>','',str_replace('</a>','', $strNote))), $strTax);
+				
 			} else {
-				$strNote = sprintf($GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['gross_noShipping'], $strTax);
+
+				$strNote = sprintf($GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['tax_noShipping'], $strTax);
+				
 			}
+			
 		}
 
 		// Optional parameter txt for text only
@@ -534,30 +581,7 @@ class IsotopeGermanize extends FrontendTemplate
     }
 
 
-    /**
-     * Return text for a tax rate
-     * @return string
-     */
-    protected function getTaxRate($intTaxClass)
-    {
-		if(!is_numeric($intTaxClass))
-		{
-			return false;
-		}
-
-		$objRate = Database::getInstance()->prepare("SELECT germanize_rate FROM tl_iso_tax_class WHERE id=?")
-			->limit(1)
-			->execute($intTaxClass);
-
-		if($objRate->numRows)
-		{
-			return $this->getTaxPercentForRate($objRate->germanize_rate);
-		}
-		
-		return false;
-	}
-
-
+   
     /**
      * Return a link to the shipping costs page
      * @return string
@@ -565,43 +589,54 @@ class IsotopeGermanize extends FrontendTemplate
     protected function getShippingLink()
     {
         global $objPage;
-
+		
 		if(Isotope\Isotope::getConfig()->shipping_page < 1)
 		{
 			return false;
 		}
 
 		// Build link to the shipping costs page
-		$objTarget = $this->getPageDetails(Isotope\Isotope::getConfig()->shipping_page);
-
-		if ($GLOBALS['TL_CONFIG']['addLanguageToUrl'])
-		{
-			$strUrl = $this->generateFrontendUrl($objTarget->row(), null, $objTarget->rootLanguage);
+			
+		
+										
+		$objTarget =  \PageModel::findByPk(Isotope\Isotope::getConfig()->shipping_page);
+		
+		 
+		if ($objTarget !== null) {
+				
+			
+		
+			if ($GLOBALS['TL_CONFIG']['addLanguageToUrl'])
+			{
+				$strUrl = $this->generateFrontendUrl($objTarget->row(), null, $objTarget->language);
+			}
+			else
+			{
+				$strUrl = $this->generateFrontendUrl($objTarget->row());
+			}
+			
+			$strLink = '<a href="'.$strUrl.'"';
+	
+			if (strncmp(Isotope\Isotope::getConfig()->shipping_rel, 'lightbox', 8) !== 0 || $objPage->outputFormat == 'xhtml')
+			{
+				$strLink .= ' rel="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
+			}
+			else
+			{
+				$strLink .= ' data-lightbox="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
+			}
+			
+			if(Isotope\Isotope::getConfig()->shipping_target)
+			{
+				$strLink .= ($objPage->outputFormat == 'xhtml') ? ' onclick="return !window.open(this.href)"' : ' target="_blank"';
+			}
+	
+			$strLink .= '>';
+			
+			return $strLink;
+		}else {
+			return false;
 		}
-		else
-		{
-			$strUrl = $this->generateFrontendUrl($objTarget->row());
-		}
-
-		$strLink = '<a href="'.$strUrl.'"';
-
-		if (strncmp(Isotope\Isotope::getConfig()->shipping_rel, 'lightbox', 8) !== 0 || $objPage->outputFormat == 'xhtml')
-		{
-			$strLink .= ' rel="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
-		}
-		else
-		{
-			$strLink .= ' data-lightbox="'. Isotope\Isotope::getConfig()->shipping_rel .'"';
-		}
-
-		if(Isotope\Isotope::getConfig()->shipping_target)
-		{
-			$strLink .= ($objPage->outputFormat == 'xhtml') ? ' onclick="return !window.open(this.href)"' : ' target="_blank"';
-		}
-
-		$strLink .= '>';
-
-		return $strLink;
 	}
 
 
