@@ -1,3 +1,16 @@
+
+##todos for update
+
+extent modul Checkout->canCheckout();
+validate UST-ID
+
+extend ProduktList-Modul with full Tax String,
+Use Globals from Germanizr + tax_class->label
+
+extend iso_reader_default.html5 + iso_list_default + iso_list_variants
+
+
+
 isotope_germanize
 =================
 
