@@ -4,14 +4,11 @@
 extent modul Checkout->canCheckout();
 validate UST-ID
 
-extend ProduktList-Modul with full Tax String,
+extend ProduktList-Modul,ProduktVariantenList-Modul and ProduktReaderModul with full Tax String,
 Use Globals from Germanizr + tax_class->label
 
 extend iso_reader_default.html5 + iso_list_default + iso_list_variants
 
-check why this not work if i overwrite ProductList   
-	 $objResponse = new HtmlResponse($objProduct->generate($arrConfig));    
-                $objResponse->send();
 
 isotope_germanize
 =================
