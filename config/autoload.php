@@ -24,9 +24,19 @@ ClassLoader::addClasses(array
 	// Classes
 	
 	'IXR_Library' => 'system/modules/isotope_germanize/classes/IXR_Library.php',
+	'ValidateDATA' => 'system/modules/isotope_germanize/classes/ValidateDATA.php',
 	'IsotopeGermanize' => 'system/modules/isotope_germanize/classes/IsotopeGermanize.php'
 	
 	
 ));
-
+/**
+ * Register the templates
+ */
+TemplateLoader::addFiles(array
+(
+	'iso_reader_default'    => 'system/modules/isotope_germanize/templates',
+	'iso_list_default'    => 'system/modules/isotope_germanize/templates',
+	'iso_list_variants'    => 'system/modules/isotope_germanize/templates'
+	
+));
 ?>
