@@ -4,7 +4,7 @@
 extent modul Checkout->canCheckout();
 validate UST-ID
 
-extend ProduktList-Modul,ProductVariantList-Modul and ProductReaderModul with full Tax String,
+extend ProduktList-Modul and ProductReaderModul with full Tax String,
 Use Globals from Germanizr + tax_class->label
 
 extend iso_reader_default.html5 + iso_list_default + iso_list_variants
