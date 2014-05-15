@@ -1,15 +1,20 @@
-##todos for update
+##Changes for update
 
 extent modul Checkout->canCheckout();
 validate UST-ID
 
+###Functions
 extend ProduktList-Modul and ProductReaderModul with full Tax String,
 Use Globals from Germanizr + tax_class->label
 
 overwrite ProduktVariantList-Modul, because it extends ProduktList-Modul
 
 extend iso_reader_default.html5 + iso_list_default + iso_list_variants
+###BE
 
+
+###FE
+The shipping link opens the shipping page always blank now.
 
 =================
 isotope_germanize
