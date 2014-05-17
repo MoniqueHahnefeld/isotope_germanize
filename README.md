@@ -6,11 +6,12 @@ In der Erweiterung Isotope Germanize werden die Steuerklassen-Labels die im Feld
 ###Hinweiß unter dem Produktpreis
 So setzt sich der **Hinweiß unter dem Produktpreis** in der Produkteliste sowie in der Detailsansicht aus der Steuerklassen-Beschriftung und den globalen Versand hinweiß zusammen.
 
-###Versandhinweiß im Bestellprozess – Schritt Versand
+
 Für den **Versandhinweiß** unter den Produkten gibt es nur 2 Informationstypen. Zum einen "kein Versandartikel" und zum Anderem "inkl. Versand", wobei "Versand" ein Link zu der Versandinformationen-Seiten ist.
 
 Diese Bezeichnungen können in den Language-Dateien der Erweiterung geändert werden.
 
+###Versandhinweiß im Bestellprozess – Schritt Versand
 Die **Isotope Germanize Erweiterung** fügt der Shopkonfiguration eine Palette an.
 Darin kann eine Seite mit Versandinformationen ausgewählt werden. Diese wird dann bei der Produktpreisinformation verlinkt.
 
