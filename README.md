@@ -16,11 +16,11 @@ Darin kann eine Seite mit Versandinformationen ausgewählt werden. Diese wird da
 
 Es kann auch ein Artikel mit **wichtigen Informationen zum Versand** ausgewählt werden, welcher dann beim Bestellvorgang,im Kassenmodul, im Abschnitt Versand angezeigt werden soll.
 
-##UID-Prüfung 
+###UID-Prüfung 
 
 muss noch umgesetzt werden...
 
-##Kassenseiten auswählen
+###Kassenseiten auswählen
 Auf Kassenseiten bei können auch Gästen aufgrund ihrer Länderzuordnung und/oder Ust-ID Netto-Preise angezeigt werden.
 Dafür müsste noch eine Auswahl der angelegten Steuerklassen integriert werden, damit zugewiesen werden kann welche Netto ist.
 
