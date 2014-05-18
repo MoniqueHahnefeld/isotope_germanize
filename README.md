@@ -13,12 +13,12 @@ Für den **Versandhinweiß** unter den Produkten gibt es nur 2 Informationstypen
 Diese Bezeichnungen können in den Language-Dateien der Erweiterung geändert werden.
 
 ###Versandhinweiß im Bestellprozess – Schritt Versand
-Die **Isotope Germanize Erweiterung** fügt der Shopkonfiguration eine Palette an.
+Die **Isotope Legal Erweiterung** fügt der Shopkonfiguration eine Palette an.
 Darin kann eine Seite mit Versandinformationen ausgewählt werden. Diese wird dann bei der Produktpreisinformation verlinkt.
 
 Es kann auch ein Artikel mit **wichtigen Informationen zum Versand** ausgewählt werden, welcher dann beim Bestellvorgang,im Kassenmodul, im Abschnitt Versand angezeigt werden soll.
 
-###UID-Prüfung 
+###Ust.-ID-Prüfung 
 
 muss noch umgesetzt werden...
 
