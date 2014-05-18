@@ -1,10 +1,11 @@
-#Erweiterung Isotope Germanize
+#Erweiterung Isotope Legal
 
+	Diese Erweiterung baut auf der bekannten Erweiterung Isotope Germanize von Christian De La Haye auf.
 ##Nutzung
-In der Erweiterung Isotope Germanize werden die Steuerklassen-Labels die im Feld "Beschriftung einbinden" eingetragen werden für die Hinweiße im Frontend verwendet.
+In der Erweiterung Isotope Legal werden die Steuerklassen-Labels die im Feld "Beschriftung einbinden" eingetragen werden für die Hinweiße im Frontend verwendet.
 
 ###Hinweiß unter dem Produktpreis
-So setzt sich der **Hinweiß unter dem Produktpreis** in der Produkteliste sowie in der Detailsansicht aus der Steuerklassen-Beschriftung und den globalen Versand hinweiß zusammen.
+So setzt sich der **Hinweiß unter dem Produktpreis** in der Produkteliste sowie in der Detailsansicht aus der Steuerklassen-Beschriftung und den globalen Versandhinweiß zusammen.
 
 
 Für den **Versandhinweiß** unter den Produkten gibt es nur 2 Informationstypen. Zum einen "kein Versandartikel" und zum Anderem "inkl. Versand", wobei "Versand" ein Link zu der Versandinformationen-Seiten ist.
@@ -45,6 +46,8 @@ extend iso_reader_default.html5 + iso_list_default + iso_list_variants
 ###FE
 The shipping link opens the shipping page always blank now.
 
+
+2013
 =================
 isotope_germanize
 =================
