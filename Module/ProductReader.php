@@ -94,9 +94,9 @@ class ProductReader extends \Module
             exit;
         }
 		
-			/*
+			 /*
 			*********************
-			EXTENDED from Germanize 
+			EXTENDED from Isotope Legal by Monique Hahnefeld 
 			*********************
 			*/
 			
@@ -110,7 +110,7 @@ class ProductReader extends \Module
 			$taxID = $objProduct->getPrice()->tax_class;
 			$taxModel = TaxClass::findByID($taxID);
 			if ($taxModel ===null) {
-				$taxLabel=$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['taxfree']; //Taxfree Global
+				$taxLabel=$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['taxfree']; //Taxfree Global
 			}else {
 				$taxArr = $taxModel->row();
 				$taxLabel = $taxArr['label'];
@@ -118,9 +118,9 @@ class ProductReader extends \Module
 			
 			$blnShippingExempt=($objProduct->isExemptFromShipping()) ? 'true' : 'false'; 
 			
-			/*
+			 /*
 			*********************
-			EXTENDED from Germanize  END
+			EXTENDED from Isotope Legal END
 			*********************
 			*/
 		
@@ -211,9 +211,11 @@ class ProductReader extends \Module
     }
 
     
-    /*
-    * GERMANIZE
-    */
+     	/*
+	*********************
+	EXTENDED from Isotope Legal by Monique Hahnefeld 
+	*********************
+	*/
     /**
          * Return a link to the shipping costs page
          * @return string
@@ -264,7 +266,7 @@ class ProductReader extends \Module
     			}
     	
     			$strLink .= '>';
-    			$strLink .= $GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['linkname'];
+    			$strLink .= $GLOBALS['TL_LANG']['iso_legal']['priceNotes']['linkname'];
     			$strLink .= '</a>';
     			
     			return $strLink;
