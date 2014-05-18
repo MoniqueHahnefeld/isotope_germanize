@@ -12,6 +12,8 @@
  * @package    isotope_germanize
  * @license    LGPL
  * @filesource
+ * @package    isotope_legal
+ * @author 2014  Monique Hahnefeld <info@monique-hahnefeld.de> update to contao 3, isotope 2
  */
 
 
@@ -21,6 +23,7 @@
  * @package	   isotope_germanize
  * @author     Christian de la Haye <service@delahaye.de>
  * @author     Andreas Schempp <andreas.schempp@terminal42.ch>
+ * 
  */
 
 
