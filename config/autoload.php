@@ -1,6 +1,6 @@
 <?php /**
  * 
- * @package   isotope_germanize
+ * @package   isotope_legal
  * @author    Monique Hahnefeld
  * @license   LGPL
  * @copyright 2014 Monique Hahnefeld
@@ -23,14 +23,14 @@ ClassLoader::addClasses(array
 (
 	
 	//Modules
-	'MHAHNEFELD\Module\ProductVariantList' => 'system/modules/isotope_germanize/Module/ProductVariantList.php',
-	'MHAHNEFELD\Module\ProductList' => 'system/modules/isotope_germanize/Module/ProductList.php',
-	'MHAHNEFELD\Module\ProductReader' => 'system/modules/isotope_germanize/Module/ProductReader.php',
+	'MHAHNEFELD\Module\ProductVariantList' => 'system/modules/isotope_legal/Module/ProductVariantList.php',
+	'MHAHNEFELD\Module\ProductList' => 'system/modules/isotope_legal/Module/ProductList.php',
+	'MHAHNEFELD\Module\ProductReader' => 'system/modules/isotope_legal/Module/ProductReader.php',
 	// Classes
 	
-	'IXR_Library' => 'system/modules/isotope_germanize/classes/IXR_Library.php',
-	'ValidateDATA' => 'system/modules/isotope_germanize/classes/ValidateDATA.php',
-	'IsotopeGermanize' => 'system/modules/isotope_germanize/classes/IsotopeGermanize.php'
+	'IXR_Library' => 'system/modules/isotope_legal/classes/IXR_Library.php',
+	'ValidateDATA' => 'system/modules/isotope_legal/classes/ValidateDATA.php',
+	'IsotopeGermanize' => 'system/modules/isotope_legal/classes/IsotopeGermanize.php'
 	
 	
 ));
@@ -39,9 +39,9 @@ ClassLoader::addClasses(array
  */
 TemplateLoader::addFiles(array
 (
-	'iso_reader_default'    => 'system/modules/isotope_germanize/templates',
-	'iso_list_default'    => 'system/modules/isotope_germanize/templates',
-	'iso_list_variants'    => 'system/modules/isotope_germanize/templates'
+	'iso_reader_default'    => 'system/modules/isotope_legal/templates',
+	'iso_list_default'    => 'system/modules/isotope_legal/templates',
+	'iso_list_variants'    => 'system/modules/isotope_legal/templates'
 	
 ));
 ?>
