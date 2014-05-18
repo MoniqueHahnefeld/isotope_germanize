@@ -24,7 +24,8 @@
  * @copyright  terminal42 gmbh 2012
  * @author     Andreas Schempp <andreas.schempp@terminal42.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
- * @coauthor 2014 Monique Hahnefeld update to contao 3, isotope 2
+ * @package    isotope_legal
+ * @author 2014  Monique Hahnefeld <info@monique-hahnefeld.de> update to contao 3, isotope 2
  */
 
 //wird nicht mehr benötigt
