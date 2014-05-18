@@ -13,8 +13,8 @@
  * @filesource
  *
  * New Version of isotope_germanize for Isotope 2
- * @copyright 2014 Monique Hahnefeld
- * @author  Monique Hahnefeld
+ * @copyright   2014 Monique Hahnefeld
+ * @author      Monique Hahnefeld <info@monique-hahnefeld.de>
  * @package    isotope_legal
  * @license    LGPL
  */
