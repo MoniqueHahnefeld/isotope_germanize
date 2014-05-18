@@ -1,7 +1,7 @@
 <?php /**
  * 
  * @package   isotope_legal
- * @author    Monique Hahnefeld
+ * @author    Monique Hahnefeld <info@monique-hahnefeld.de>
  * @license   LGPL
  * @copyright 2014 Monique Hahnefeld
  */
