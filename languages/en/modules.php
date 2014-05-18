@@ -11,7 +11,9 @@
  * @package    isotope_germanize
  * @license    LGPL 
  * @filesource
+ * @package    isotope_legal
+ * @author 2014  Monique Hahnefeld <info@monique-hahnefeld.de> update to contao 3, isotope 2
  */
 
 
-$GLOBALS['TL_LANG']['MOD']['isotope_germanize'][0] = 'Isotope eCommerce: Deutsche Shops';
+$GLOBALS['TL_LANG']['MOD']['isotope_legal'][0] = 'Isotope eCommerce: Legal Shops';
