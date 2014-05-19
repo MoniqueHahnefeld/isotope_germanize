@@ -30,7 +30,7 @@ use Isotope\Model\TaxClass;
  * @package    isotope_legal
  * @author     Monique Hahnefeld <info@monique-hahnefeld.de>
  */
-class IsotopeGermanize
+class IsotopeGermanize extends FrontendTemplate
 {
 
     protected static $arrEuCountries = array('at', 'be', 'bg', 'cy', 'cz', 'de', 'dk', 'es', 'fi', 'fr', 'gb', 'gr', 'hu', 'ie', 'it', 'je', 'lt', 'lu', 'lv', 'mt', 'nl', 'pl', 'pt', 'ro', 'se', 'si', 'sk');

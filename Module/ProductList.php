@@ -479,6 +479,7 @@ class ProductList extends \Isotope\Module\Module
 	EXTENDED from Isotope Legal by Monique Hahnefeld 
 	*********************
 	*/
+         /*
          * Return a link to the shipping costs page
          * @return string
          */
