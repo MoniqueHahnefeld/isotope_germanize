@@ -17,9 +17,9 @@
 <div class="baseprice"><?php echo $this->generateAttribute('baseprice'); ?></div><?php endif; ?>
 <div class="notePricing">
 <?php if (!$this->config["noShipping"]): ?>
-<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['shipping'].''.$this->config["shippingLink"];?>
+<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['shipping'].''.$this->config["shippingLink"];?>
 <?php else: ?>
-<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_germanize']['priceNotes']['noShipping']; ?>
+<?php echo $this->config["taxlabel"].' '.$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['noShipping']; ?>
 <?php endif; ?>
 </div>
 <div class="details"><a href="<?php echo $this->href; ?>" title="<?php echo $this->label_detail; ?>"><?php echo $this->label_detail; ?></a></div>
