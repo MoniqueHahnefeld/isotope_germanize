@@ -22,7 +22,7 @@ Es kann auch ein Artikel mit **wichtigen Informationen zum Versand** ausgewählt
 
 muss noch gelöst werden
 
-	macht eigentlich nur Sinn wenn man bei einer Migliedergruppe abfragen kann ob das lang des Mitgliedes in der EU ist. Damit es mit einer Steuerklasse des Isotope core verknüpft werden kann. Damit in der Kasse dann auch wirklich ohne Steuer berechnet wird. Beim Registrieren müsste das Mitglied direkt der Gruppe zugeordnet werden aufgrund seiner Länderangabe
+macht eigentlich nur Sinn wenn man bei einer Migliedergruppe abfragen kann ob das Land des Mitgliedes in der EU ist. Damit es mit einer Steuerklasse des Isotope core verknüpft werden kann. Damit in der Kasse dann auch wirklich ohne Steuer berechnet wird. Beim Registrieren müsste das Mitglied direkt der Gruppe zugeordnet werden aufgrund seiner Länderangabe
 
 
 ###Ust.-ID-Prüfung 
