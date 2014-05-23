@@ -19,7 +19,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_iso_config']['germanize']        = array('Dies ist ein deutscher Shop', 'ACHTUNG! Hiermit aktivieren Sie die automatische Steuerberechnung für Deutschland! Einstellungen der Steuerklassen und -sätze werden ggf. ignoriert!');
+$GLOBALS['TL_LANG']['tl_iso_config']['germanize']        = array('Isotope Legal für diese Konfiguration nutzen', 'Aktivieren Sie Isotope Legal, wenn Sie möchten das Hinweise zu Steuer und Versand für Nutzer ausgegeben werden sollen.');
 
 $GLOBALS['TL_LANG']['tl_iso_config']['shipping_page']    = array('Seite mit den Versandkosten', 'Wählen Sie die Seite aus, die Angaben zu den Versandkosten enthält.');
 $GLOBALS['TL_LANG']['tl_iso_config']['shipping_target']  = array('In neuem Fenster öffnen', 'Den Link in einem neuen Browserfenster öffnen.');
