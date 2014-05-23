@@ -28,11 +28,10 @@ $GLOBALS['TL_LANG']['MSC']['confirmOrder']                          = 'Buy Now';
  */
  
 $GLOBALS['TL_LANG']['iso_legal']['priceNotes']['taxfree']       = 'TaxFree';
-$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['linkname']       = 'Versand';
+$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['linkname']       = 'Shipping';
 $GLOBALS['TL_LANG']['iso_legal']['priceNotes']['shipping']       = 'plus ';
 $GLOBALS['TL_LANG']['iso_legal']['priceNotes']['noShipping']     = ', no Shipping';
-$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['taxfree_shipping']   = 'plus  <a>Shipping</a>';
-$GLOBALS['TL_LANG']['iso_legal']['priceNotes']['taxfree_noShipping'] = 'no Shipping';
+
 
 $GLOBALS['TL_LANG']['iso_legal']['notes']['nonEuGuest']        = 'Die Preise werden unabhängig vom Lieferland %s inkl. MwSt. angezeigt. Bei Lieferung in nicht-EU-Länder wird diese in der Bestellübersicht nicht berücksichtigt.';
 $GLOBALS['TL_LANG']['iso_legal']['notes']['nonEu']             = 'Als Lieferung an einen Leistungsempfänger in dem nicht-EU-Land %s ist der Umsatz nicht steuerbar. Es wird daher keine MwSt. berechnet.';

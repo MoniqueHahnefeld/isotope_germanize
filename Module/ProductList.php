@@ -539,3 +539,4 @@ class ProductList extends \Isotope\Module\Module
     	}
     
 }
+?>

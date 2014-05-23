@@ -19,7 +19,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_iso_config']['germanize']        = array('Dies ist ein deutscher Shop', 'ACHTUNG! Hiermit aktivieren Sie die automatische Steuerberechnung für Deutschland! Einstellungen der Steuerklassen und -sätze werden ggf. ignoriert!');
+$GLOBALS['TL_LANG']['tl_iso_config']['germanize']        = array('Isotope Legal für diese Konfiguration nutzen', 'Aktivieren Sie Isotope Legal, wenn Sie möchten das Hinweise zu Steuer und Versand für Nutzer ausgegeben werden sollen.');
 
 $GLOBALS['TL_LANG']['tl_iso_config']['shipping_page']    = array('Seite mit den Versandkosten', 'Wählen Sie die Seite aus, die Angaben zu den Versandkosten enthält.');
 $GLOBALS['TL_LANG']['tl_iso_config']['shipping_target']  = array('In neuem Fenster öffnen', 'Den Link in einem neuen Browserfenster öffnen.');
@@ -27,7 +27,7 @@ $GLOBALS['TL_LANG']['tl_iso_config']['shipping_rel']     = array('Lightbox', 'Hi
 
 $GLOBALS['TL_LANG']['tl_iso_config']['shipping_note']    = array('Artikel mit Versandkostenhinweis im Warenkorb', 'Wählen Sie den Artikel aus, der die im Warenkorb sichtbaren Hinweise zu Versandkosten enthält.');
 
-$GLOBALS['TL_LANG']['tl_iso_config']['checkout_pages']   = array('Kassenseiten','Auf Kassenseiten sehen auch Gäste ggf. Nettopreise aufgrund Ihrer Landeszuordnung bzw. USt-ID Nr..');
+$GLOBALS['TL_LANG']['tl_iso_config']['checkout_pages']   = array('Kassenseiten','Bitte wählen Sie die Kassenseiten welche zu dieser Konfiguration gehören');
 $GLOBALS['TL_LANG']['tl_iso_config']['netprice_groups']  = array('Mitgliedergruppen mit Nettopreisen', 'Wählen Sie welche Mitglieder Nettopreise sehen dürfen.');
 $GLOBALS['TL_LANG']['tl_iso_config']['vatcheck_guests']  = array('USt-ID-Prüfung bei Gästen','Die USt-ID soll auch bei Gästen automatisch geprüft werden, und somit ggf. beim ersten Einkauf die Steuerfreiheit ermöglichen. In den Adressfeldern müssen die Felder ´USt-ID-Nr.´ und ´Status der USt-ID Nr.´ aktiviert sein.');
 $GLOBALS['TL_LANG']['tl_iso_config']['vatcheck_member']  = array('USt-ID-Prüfung bei Mitgliedern','Die USt-ID soll bei Mitgliedern automatisch geprüft werden. In den Adressfeldern müssen die Felder ´USt-ID-Nr.´ und ´Status der USt-ID Nr.´ aktiviert sein.');

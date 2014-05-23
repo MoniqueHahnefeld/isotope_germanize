@@ -69,7 +69,7 @@ class IsotopeGermanize extends FrontendTemplate
      */
     public static function isGermany()
     {
-        $strCountry = Isotope\Isotope::getCart()->shippingAddress->country;
+        $strCountry = Isotope\Isotope::getCart()->getShippingAddress()->country;
 
         return ($strCountry == 'de' || $strCountry == '');
     }
@@ -81,7 +81,8 @@ class IsotopeGermanize extends FrontendTemplate
      */
     public static function isEuropeanUnion()
     {
-        return in_array(Isotope\Isotope::getCart()->shippingAddress->country, self::$arrEuCountries);
+
+        return in_array(Isotope\Isotope::getCart()->getShippingAddress()->country, self::$arrEuCountries);
     }
 
 
@@ -116,7 +117,7 @@ class IsotopeGermanize extends FrontendTemplate
      */
     public static function getTaxNotice()
     {
-        $objAddress = Isotope\Isotope::getCart()->shippingAddress;
+        $objAddress = Isotope\Isotope::getCart()->getShippingAddress();
         $arrCountries = Haste::getInstance()->call('getCountries');
         $strCountry = $arrCountries[$objAddress->country];
 
@@ -133,31 +134,37 @@ class IsotopeGermanize extends FrontendTemplate
         if (!self::isOnCheckoutPage()) {
 
             if (FE_USER_LOGGED_IN === true && !self::isEuropeanUnion()) {
-                return $nonEU;
-            } elseif (FE_USER_LOGGED_IN === true && self::isEuropeanUnion() && self::hasValidVatNo()) {
-                return $confirmedVatNo;
-            } elseif (self::hasNetPriceGroup()) {
-
-                if (self::isEuropeanUnion() && self::hasVatNo() && !self::hasValidVatNo()) {
-                    return $unconfirmedVatNo;
-                } else {
-                    return $nonEUGuest;
-                }
-
-            } elseif (self::isEuropeanUnion()) {
-                return $noVatNo;
+              //  return $nonEU;
+                return'';
+                //## mach eigentlich nur sinn wenn man bei einer MIgliedergruppe abfragen kann ob das lang des mitgliedes in der EU ist. Damit es mit einer steuerklasse des Isotope core verknüpft werden kann. Damit in der Kasse dann auch wirklich ohne Steuer berechnet wird. Beim Registrieren müsste das Mitglied direkt der Gruppe zugeordnet werden aufgrund seiner länderangabe
+                
+                
+//            } elseif (FE_USER_LOGGED_IN === true && self::isEuropeanUnion() && self::hasValidVatNo()) {
+//                return $confirmedVatNo;
+//            } elseif (self::hasNetPriceGroup()) {
+//
+//                if (self::isEuropeanUnion() && self::hasVatNo() && !self::hasValidVatNo()) {
+//                    return $unconfirmedVatNo;
+//                } else {
+//                    return $nonEUGuest;
+//                }
+//
+//            } elseif (self::isEuropeanUnion()) {
+//                return $noVatNo;
             } else {
-                return $nonEUGuest;
+                //return $nonEUGuest;
+                return''; 
             }
 
         } else {
 
             if (!self::isEuropeanUnion()) {
-                return $nonEU;
-            } elseif (self::isEuropeanUnion() && self::hasValidVatNo()) {
-                return $confirmedVatNo;
-            } elseif (self::isEuropeanUnion() && self::hasVatNo()) {
-                return $unconfirmedVatNo;
+              //  return $nonEU;
+              return'';
+//            } elseif (self::isEuropeanUnion() && self::hasValidVatNo()) {
+//                return $confirmedVatNo;
+//            } elseif (self::isEuropeanUnion() && self::hasVatNo()) {
+//                return $unconfirmedVatNo;
             } else {
                 return '';
             }
