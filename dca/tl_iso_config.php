@@ -23,7 +23,8 @@ $GLOBALS['TL_DCA']['tl_iso_config']['palettes']['__selector__'][] = 'germanize';
 
 $GLOBALS['TL_DCA']['tl_iso_config']['palettes']['default'] .= ';{germanize_legend:hide},germanize';
 
-$GLOBALS['TL_DCA']['tl_iso_config']['subpalettes']['germanize'] .= 'shipping_page,shipping_rel,shipping_target,shipping_note,checkout_pages,vatcheck_guests,vatcheck_member,vatcheck_groups';
+$GLOBALS['TL_DCA']['tl_iso_config']['subpalettes']['germanize'] .= 'shipping_page,shipping_rel,shipping_target,shipping_note';
+//$GLOBALS['TL_DCA']['tl_iso_config']['subpalettes']['germanize'] .= 'shipping_page,shipping_rel,shipping_target,shipping_note,checkout_pages,vatcheck_guests,vatcheck_member,vatcheck_groups';
 
 
 /**
